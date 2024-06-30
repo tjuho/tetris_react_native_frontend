@@ -2,6 +2,8 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
+### `ln -sf /path/to/tdd-mooc-tetris/src /path/to/tetris_react_native_frontend/backend`
+
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
 ## Step 1: Start the Metro Server
@@ -22,9 +24,62 @@ yarn start
 
 Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
+## Setup for linux debugging
+```
+sudo apt update
+sudo apt install openjdk-17-jdk
+sudo update-alternatives --config java
+```
+Select the appropriate number for Java 17 from the list.
+
+Set the JAVA_HOME environment variable in your shell configuration file (~/.bashrc, ~/.zshrc, etc.):
+```
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+```
+Apply the changes:
+```
+source ~/.bashrc  # or ~/.zshrc
+```
+With Java 17 installed and the Android environment set up, you should be able to run your React Native app.
+
+First, ensure your emulator is running manually:
+
+
+```
+emulator -avd <your_avd_name>
+```
+
+Replace <your_avd_name> with the name of your AVD.
+
+Then, in your project directory, run:
+
+```
+npx react-native run-android
+```
+
+Troubleshooting Tips
+
+Check Java Version: Ensure the correct Java version is being used:
+
+```
+java -version
+```
+
+Check adb Installation: Ensure adb is installed and accessible:
+
+```
+adb devices
+```
+
+Check Emulator: Ensure the emulator is running:
+
+```
+emulator -list-avds
+```
 ### For Android
 
-```bash
+```
 # using npm
 npm run android
 
@@ -34,7 +89,7 @@ yarn android
 
 ### For iOS
 
-```bash
+```
 # using npm
 npm run ios
 
